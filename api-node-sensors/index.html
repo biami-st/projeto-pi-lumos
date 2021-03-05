@@ -21,21 +21,24 @@
 		<h2>Média: <label id='average'>0.00</label></h2>
 		<h2>Média Hora: <label id='averageHour'>0.00</label></h2>
 	</section>
-	<section style="width:100%">
+	<section style="width:80%">
 		<canvas id="chart"></canvas>
 	<section>
 	<script>
 
 		var context = document.getElementById("chart").getContext("2d");
-		context.canvas.width = 1000;
-		context.canvas.height = 300;
+		context.canvas.width = 500;
+		context.canvas.height = 200;
         
         var configuration = {
 			type: 'line',
 			data: {
 				datasets: [{
-					label: "Temperature x Time",
+					label: "Temperatura x Tempo",
 					type: 'line',
+					backgroundColor: ['rgba(22, 255, 207, 0.5)'],
+					borderColor: ['#03725F'],
+					borderWidth: 2
 				}]
 			},
 			options: {
@@ -44,7 +47,8 @@
 						//type: 'value',
 						distribution: 'series',
                         ticks: {
-                            beginAtZero:true
+							beginAtZero:true,
+							maxticksLimit: 5
                         }
 					}],
 					yAxes: [{
@@ -53,7 +57,9 @@
 							labelString: 'Temperature'
                         },
                         ticks: {
-                            beginAtZero:true
+							beginAtZero:true,
+							suggestedMin: -10,
+							suggestedMax: 25
                         }
 					}]
 				},
@@ -63,7 +69,7 @@
 			}
         };
         
-		var chart = new Chart(context, configuration);
+		var chart = new Chart(context, configuration);	
 
         //Função para obter os dados de temperatura do server
         //Seria mais interessante fazer isso com WebSocket, porém para fins academicos, os dados serão atualizados via HTTP
@@ -91,7 +97,7 @@
 
             listTemp.forEach(data => {
                 //Máximo de 60 itens exibidos no gráfico
-                if (chart.data.labels.length == 10 && chart.data.datasets[0].data.length == 10){
+                if (chart.data.labels.length == 5 && chart.data.datasets[0].data.length == 5){
                     chart.data.labels.shift();
                     chart.data.datasets[0].data.shift();
                 }
@@ -99,18 +105,28 @@
                 chart.data.labels.push(this.time++);
                 chart.data.datasets[0].data.push(parseFloat(data));
                 chart.update();
+	
 			});
 			
 			document.getElementById('average').textContent = obj.average;
 			document.getElementById('averageHour').textContent = obj.averageHour;
+
 		} 
 		
 		get_data();
 
-        setInterval(() => {
-            get_data();
-        }, 1000);
 
+		function sendTemperature(){
+			var http = new XMLHttpRequest();
+            http.open('POST', 'http://localhost:3000/api/sendData', false);
+            http.send(null);
+		}
+
+        setInterval(() => {
+			sendTemperature();
+			get_data();
+        }, 1000);
+	
 	</script>
 </body>
 
