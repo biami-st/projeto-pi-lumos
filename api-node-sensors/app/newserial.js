@@ -19,7 +19,7 @@ class NewArduino {
     SetConnection(){
         setInterval(() => {
             //alterar aqui para alterar a temperatura
-            let data_float = sensors.lm35(-5,10);
+            let data_float = sensors.lm35(-8,15);
 
             if (this.__listDataTemp.length === 59) {
                 let sum = this.__listDataTemp.reduce((a, b) =>  a + b, 0);
