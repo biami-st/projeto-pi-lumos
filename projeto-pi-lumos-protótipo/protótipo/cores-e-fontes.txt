@@ -1,0 +1,28 @@
+fontes: Poppins - light
+                  regular
+                  semibold
+                  bold
+
+https://fonts.google.com/specimen/Poppins
+      
+           
+// Outra fonte usada é a book antiqua
+Como não achei no google fonts, vamos substituir 
+pela fonte:
+
+Shippori Mincho B1 - Semi Bold
+
+https://fonts.google.com/specimen/Shippori+Mincho+B1
+
+
+Cores: 
+Fundo cinza claro: #EDEDED
+                   RGB: (237,237,237)
+Azul claro: #9CC9FF
+            RGB: (156, 201, 255)
+
+Azul escuro: #5F99D3
+            RGB: (95, 153, 211)
+
+Amarelo: #CEBF65
+         RGB: (206, 191, 101)
