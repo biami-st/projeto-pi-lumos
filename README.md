@@ -20,3 +20,8 @@ após terminado o download, use o comando:
     // para iniciar a api
     npm start
 
+## protótipo-site
+
+arquivos que termina com .AI é do Adobe Illustrator. 
+
+Que é semelhante ao .PSD (Photoshop)
