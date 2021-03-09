@@ -36,8 +36,8 @@
 				datasets: [{
 					label: "Temperatura x Tempo",
 					type: 'line',
-					backgroundColor: ['rgba(22, 255, 207, 0.5)'],
-					borderColor: ['#03725F'],
+					backgroundColor: ['rgba(95,153,211,0.3)'],
+					borderColor: ['#5F99D3'],
 					borderWidth: 2
 				}]
 			},
@@ -97,7 +97,7 @@
 
             listTemp.forEach(data => {
                 //Máximo de 60 itens exibidos no gráfico
-                if (chart.data.labels.length == 5 && chart.data.datasets[0].data.length == 5){
+                if (chart.data.labels.length == 10 && chart.data.datasets[0].data.length == 10){
                     chart.data.labels.shift();
                     chart.data.datasets[0].data.shift();
                 }
